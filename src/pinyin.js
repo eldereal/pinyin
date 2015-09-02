@@ -76,6 +76,7 @@ var DEFAULT_OPTIONS = {
   style: PINYIN_STYLE.TONE, // 风格
   segment: false, // 分词。
   heteronym: false, // 多音字
+  outputSource: false
 };
 
 
