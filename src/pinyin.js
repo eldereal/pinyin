@@ -219,12 +219,20 @@ function pinyin(hans, options){
 
       // ends of non-chinese words.
       if(nohans.length > 0){
-        pys.push([nohans]);
+        if (options.outputSource) {
+          pys.push({src:nohans});
+        }else{
+          pys.push([nohans]);
+        }
         nohans = ""; // reset non-chinese words.
       }
 
       if(words.length === 1){
+        if (options.outputSource) {
+          pys.push({src:words, pinyin:single_pinyin(words, options)});
+        }else{
           pys.push(single_pinyin(words, options));
+        }
       }else{
         pys = pys.concat(phrases_pinyin(words, options));
       }
@@ -236,7 +244,11 @@ function pinyin(hans, options){
 
   // 清理最后的非中文字符串。
   if(nohans.length > 0){
-    pys.push([nohans]);
+    if (options.outputSource) {
+      pys.push({src:nohans});
+    }else{
+      pys.push([nohans]);
+    }
     nohans = ""; // reset non-chinese words.
   }
   return pys;
